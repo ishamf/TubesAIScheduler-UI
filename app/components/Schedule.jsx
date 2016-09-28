@@ -42,7 +42,7 @@ class BaseSchedule extends React.Component {
                   duration={1}
                   key={`(${day}, ${slot})`}
                 >
-                  <ScheduleDropTarget />
+                  <ScheduleDropTarget day={day} slot={slot} />
                 </ScheduleItem>
               )
             }

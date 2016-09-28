@@ -21,7 +21,8 @@
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "~0.14.7",
     "react-redux": "~4.3.0",
-    "redux": "~3.2.1"
+    "redux": "~3.2.1",
+    "redux-actions": "^0.12.0"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.7.0",

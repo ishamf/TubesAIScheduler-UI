@@ -1,12 +1,23 @@
 import React, { PropTypes } from 'react'
 import {DragSource} from 'react-dnd'
+import { connect } from 'react-redux'
 
+import {flow} from '../util'
+import * as Actions from '../actions'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
 const sItemSource = {
   beginDrag ({name}) {
     return {
       name: name
+    }
+  },
+  endDrag ({name, moveCourse}, monitor) {
+    if (monitor.didDrop()) {
+      const {day, slot} = monitor.getDropResult()
+
+      console.log(name, day, slot)
+      moveCourse(name, day, slot)
     }
   }
 }
@@ -29,5 +40,6 @@ const Course = ({name, room, connectDragSource, isDragging}) => (
 )
 
 const DNDSpec = DragSource(DRAG_TYPE_SCHEDULE_ITEM, sItemSource, dndCollect)
+const Connector = connect(undefined, Actions)
 
-export default DNDSpec(Course)
+export default flow(DNDSpec, Connector)(Course)

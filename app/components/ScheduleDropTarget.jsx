@@ -4,8 +4,11 @@ import {DropTarget} from 'react-dnd'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
 const scheduleDropTarget = {
-  drop () {
-    console.log('Dropped')
+  drop ({day, slot}) {
+    return {
+      day,
+      slot
+    }
   }
 }
 

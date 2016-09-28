@@ -28,9 +28,9 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'MOVE':
+    case 'MOVE_COURSE':
       const {name, destination} = action.payload
-      return state.setIn(`schedule.${name}.time`, destination)
+      return state.setIn(['schedule', name, 'time'], fromJS(destination))
     default:
       return state
   }
