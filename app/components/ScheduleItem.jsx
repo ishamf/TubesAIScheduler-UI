@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+
 import {DAY_PERCENT, SLOT_PERCENT} from '../values'
 
 const Course = ({slot, day, duration, children}) => (

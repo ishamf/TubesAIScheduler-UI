@@ -11,5 +11,21 @@
 
 .schedule-item {
   position: absolute;
+}
+
+.course, .course-drop-target, .course-drop-ghost {
+  width: 100%;
+  height: 100%;
+}
+
+.course {
   background-color: gray;
+}
+
+.course-drop-target {
+  z-index: -100;
+}
+
+.course-drop-ghost {
+  background-color: white;
 }

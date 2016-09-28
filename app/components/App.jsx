@@ -1,7 +1,12 @@
 import React from 'react'
 import Schedule from './Schedule'
+import {DragDropContext} from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
-export default class App extends React.Component {
+console.log(DragDropContext)
+console.log(HTML5Backend)
+
+class BaseApp extends React.Component {
   render () {
     return (
       <div id='content'>
@@ -11,3 +16,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default DragDropContext(HTML5Backend)(BaseApp)
