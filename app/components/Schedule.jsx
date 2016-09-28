@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import {DAY_PERCENT, SLOT_PERCENT} from '../values'
 
-import ScheduleItem from './ScheduleItem'
+import Course from './Course'
 
 const BaseSchedule = ({schedule}) => (
   <div className='schedule' style={{
@@ -21,7 +21,7 @@ const BaseSchedule = ({schedule}) => (
       hsla(0, 0%, 40%, 0.2) ${DAY_PERCENT * 2}%
     )`
   }}>
-    {schedule.valueSeq().map((s) => (<ScheduleItem schedule={s.toJS()} />)).toJS()}
+    {schedule.valueSeq().map((s) => (<Course schedule={s.toJS()} />)).toJS()}
   </div>
 )
 
