@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import {DragSource} from 'react-dnd'
 import { connect } from 'react-redux'
+import classNames from 'classnames'
 
 import {flow} from '../util'
 import * as Actions from '../actions'
@@ -31,9 +32,10 @@ function dndCollect (connect, monitor) {
 
 const Course = ({name, room, connectDragSource, isDragging}) => (
   connectDragSource(
-    <div className='course' style={{
-      opacity: isDragging ? 0.5 : 1
-    }}>
+    <div className={classNames({
+      'course': true,
+      'mod-dragged': isDragging
+    })}>
       {name} at {room}
     </div>
   )

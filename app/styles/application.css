@@ -20,10 +20,16 @@
 
 .course {
   background-color: gray;
+  z-index: 120;
+}
+
+.course.mod-dragged {
+  opacity: 0.5;
+  z-index: 30;
 }
 
 .course-drop-target {
-  z-index: -100;
+  z-index: 60;
 }
 
 .course-drop-ghost {

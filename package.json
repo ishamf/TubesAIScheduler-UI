@@ -15,6 +15,7 @@
     "prod": "brunch build --production"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "immutable": "^3.8.1",
     "react": "~0.14.7",
     "react-dnd": "^2.1.4",
