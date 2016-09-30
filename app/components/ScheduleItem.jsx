@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 import {DAY_PERCENT, SLOT_PERCENT} from '../values'
 

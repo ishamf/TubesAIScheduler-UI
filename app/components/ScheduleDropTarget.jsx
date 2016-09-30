@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import {DropTarget} from 'react-dnd'
 
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
