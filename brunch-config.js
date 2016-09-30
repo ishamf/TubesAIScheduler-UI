@@ -7,6 +7,12 @@ exports.config = {
   },
 
   plugins: {
-    babel: { presets: ['es2015', 'react'] }
+    babel: {
+      presets: ['es2015', 'react'],
+      ignore: [
+        /^(bower_components|vendor)/,
+        'app/emscripten/**/*'
+      ]
+    }
   }
 }
