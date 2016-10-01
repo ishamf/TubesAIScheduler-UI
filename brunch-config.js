@@ -8,7 +8,8 @@ exports.config = {
 
   plugins: {
     babel: {
-      presets: ['latest', 'react'],
+      presets: ['react'],
+      plugins: ['transform-es2015-modules-commonjs', 'transform-async-to-generator'],
       ignore: [
         /^(bower_components|vendor)/,
         'app/emscripten/**/*'
