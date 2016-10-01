@@ -1,9 +1,12 @@
 import { createAction } from 'redux-actions'
 
 export const moveCourse = createAction('MOVE_COURSE',
-  (name, day, slot) => ({
+  (name, day, slot, room) => ({
     name,
     destination: {
-      day,
-      slot
+      time: {
+        day,
+        slot
+      },
+      room
     }}))

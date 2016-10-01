@@ -13,12 +13,11 @@ const sItemSource = {
       name: name
     }
   },
-  endDrag ({name, moveCourse}, monitor) {
+  endDrag ({name, moveCourse, room}, monitor) {
     if (monitor.didDrop()) {
       const {day, slot} = monitor.getDropResult()
 
-      console.log(name, day, slot)
-      moveCourse(name, day, slot)
+      moveCourse(name, day, slot, room)
     }
   }
 }
