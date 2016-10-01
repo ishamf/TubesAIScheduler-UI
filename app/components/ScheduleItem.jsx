@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {DAY_PERCENT, SLOT_PERCENT} from '../values'
+import {DAY_PERCENT, SLOT_PERCENT, SLOT_OFFSET} from '../values'
 
 const Course = ({slot, day, duration, children}) => (
   <div className='schedule-item' style={scheduleStyle(day, slot, duration)}>
@@ -12,7 +12,7 @@ function scheduleStyle (day, slot, duration) {
   return {
     width: `${DAY_PERCENT}%`,
     height: `${SLOT_PERCENT * duration}%`,
-    top: `${SLOT_PERCENT * slot}%`,
+    top: `${SLOT_PERCENT * (slot - SLOT_OFFSET)}%`,
     left: `${DAY_PERCENT * day}%`
   }
 }

@@ -9,7 +9,7 @@ const defaultState = fromJS({
       name: 'AI',
       time: {
         day: 0,
-        slot: 2
+        slot: 9
       },
       duration: 2,
       room: '7602'
@@ -18,7 +18,7 @@ const defaultState = fromJS({
       name: 'Jarkom',
       time: {
         day: 1,
-        slot: 3
+        slot: 10
       },
       duration: 2,
       room: '7602'
