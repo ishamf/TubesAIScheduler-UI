@@ -1,29 +1,8 @@
 import {fromJS} from 'immutable'
 
 const defaultState = fromJS({
-  rooms: [
-    '7602', '7606'
-  ],
-  schedule: {
-    'AI': {
-      name: 'AI',
-      time: {
-        day: 0,
-        slot: 9
-      },
-      duration: 2,
-      room: '7602'
-    },
-    'Jarkom': {
-      name: 'Jarkom',
-      time: {
-        day: 1,
-        slot: 10
-      },
-      duration: 2,
-      room: '7602'
-    }
-  }
+  rooms: [],
+  schedule: {}
 })
 
 export default (state = defaultState, {type, payload}) => {
