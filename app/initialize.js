@@ -1,11 +1,16 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import counterApp from './reducers'
 import App from 'components/App'
 
-const store = createStore(counterApp, module.hot && module.hot.data && module.hot.data.counter || undefined)
+const store = createStore(
+  counterApp,
+  module.hot && module.hot.data && module.hot.data.counter || undefined,
+  applyMiddleware(thunk)
+)
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
