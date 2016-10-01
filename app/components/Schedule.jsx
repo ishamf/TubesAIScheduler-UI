@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import {DAY_PERCENT, SLOT_PERCENT, DAYS, SLOTS} from '../values'
+import {DAY_PERCENT, SLOT_PERCENT, DAYS, SLOTS, SLOT_OFFSET} from '../values'
 
 import ScheduleItem from './ScheduleItem'
 import ScheduleDropTarget from './ScheduleDropTarget'
@@ -34,7 +34,7 @@ class BaseSchedule extends React.Component {
         {(() => {
           let acc = []
           for (let day = 0; day < DAYS; day++) {
-            for (let slot = 0; slot < SLOTS; slot++) {
+            for (let slot = SLOT_OFFSET; slot < SLOTS + SLOT_OFFSET; slot++) {
               acc.push(
                 <ScheduleItem
                   day={day}
