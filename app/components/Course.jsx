@@ -45,7 +45,7 @@ const Course = ({name, room, hue, connectDragSource, isDragging, anyDragging}) =
         'mod-dragged': isDragging
       })}
       style={{
-        backgroundColor: `hsla(${hue}, 100%, 50%, 0.5)`
+        backgroundColor: `hsla(${hue}, 100%, 70%, 0.4)`
       }}
     >
       {name} at {room}
