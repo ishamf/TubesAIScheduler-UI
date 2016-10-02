@@ -11,9 +11,10 @@ const RoomSelector = ({room, changeRoom, connectDropTarget}) => connectDropTarge
 )
 
 const scheduleDropTarget = {
-  hover (props) {
-    const {room, changeRoom} = props
-    changeRoom(room)
+  hover ({room, changeRoom, currentRoom}) {
+    if (room !== currentRoom) {
+      changeRoom(room)
+    }
   }
 }
 
@@ -24,7 +25,9 @@ function dndCollect (connect, monitor) {
 }
 
 const Connector = connect(state => {
-  return {}
+  return {
+    currentRoom: state.get('currentRoom')
+  }
 }, Actions)
 
 const DNDTarget = DropTarget(DRAG_TYPE_SCHEDULE_ITEM, scheduleDropTarget, dndCollect)
