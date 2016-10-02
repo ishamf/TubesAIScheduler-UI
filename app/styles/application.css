@@ -5,8 +5,8 @@
 
 .schedule {
   position: relative;
-  min-width: 800px;
-  min-height: 600px;
+  width: 100%;
+  min-height: 500px;
 }
 
 .schedule-item {
@@ -38,9 +38,4 @@
 
 .course-drop-ghost {
   background-color: white;
-}
-
-.room-selector {
-  display: inline-block;
-  margin-left: 3em;
 }

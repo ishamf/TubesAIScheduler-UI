@@ -5,3 +5,10 @@ export function flow (...fns) {
 export function merge (...objs) {
   return Object.assign({}, ...objs)
 }
+
+export function ensureReturnFalse (f) {
+  return (...args) => {
+    f(...args)
+    return false
+  }
+}

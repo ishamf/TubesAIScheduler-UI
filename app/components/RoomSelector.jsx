@@ -7,7 +7,7 @@ import * as Actions from '../actions'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
 const RoomSelector = ({room, changeRoom, connectDropTarget}) => connectDropTarget(
-  <a className='room-selector' href='#' onClick={() => { changeRoom(room) }}>{room}</a>
+  <a href='#' onClick={() => { changeRoom(room) }}>{room}</a>
 )
 
 const scheduleDropTarget = {

@@ -5,7 +5,8 @@ import FileInput from 'react-file-input'
 import * as Actions from '../actions'
 
 const StateInput = ({loadFile}) => (
-  <FileInput
+  <input type='file'
+    className='form-control'
     placeholder='File Jadwal'
     onChange={(event) => {
       loadFile(event.target.files[0])
