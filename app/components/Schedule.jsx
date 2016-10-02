@@ -21,20 +21,22 @@ function dndCollect (connect, monitor) {
 
 class BaseSchedule extends React.Component {
   render () {
-    const {schedule, dropTargets} = this.props
+    const {schedule, dropTargets, currentRoom} = this.props
 
     return (
       <div className='schedule' style={gridScheduleStyle}>
-        {schedule.valueSeq().map((s) => (
-          <ScheduleItem
-            day={s.getIn(['time', 'day'])}
-            slot={s.getIn(['time', 'slot'])}
-            duration={s.get('duration')}
-            key={s.get('name')}
-          >
-            <Course name={s.get('name')} room={s.get('room')} />
-          </ScheduleItem>
-        )).toJS()}
+        {schedule.valueSeq()
+          .filter(s => s.get('room') === currentRoom)
+          .map(s => (
+            <ScheduleItem
+              day={s.getIn(['time', 'day'])}
+              slot={s.getIn(['time', 'slot'])}
+              duration={s.get('duration')}
+              key={s.get('name')}
+            >
+              <Course name={s.get('name')} room={s.get('room')} />
+            </ScheduleItem>
+          )).toJS()}
         {scheduleDropTargets(dropTargets)}
       </div>
     )
@@ -75,6 +77,7 @@ const gridScheduleStyle = {
 const ScheduleConnector = connect(state => {
   return {
     schedule: state.get('schedule'),
+    currentRoom: state.get('currentRoom'),
     dropTargets: state.getIn(['drag', 'targets'])
   }
 })

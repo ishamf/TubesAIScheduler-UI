@@ -40,3 +40,8 @@
 .course-drop-ghost {
   background-color: white;
 }
+
+.room-selector {
+  display: inline-block;
+  margin-left: 3em;
+}
