@@ -20,7 +20,7 @@
 
 .course.mod-any-dragged {
   background-color: hsla(0, 0%, 50%, 0.5) !important;
-  opacity: 0.5;
+  opacity: 0.8;
   z-index: 30;
 }
 
