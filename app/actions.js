@@ -70,6 +70,8 @@ export const beginDrag = (dragItem) => async (dispatch) => {
   const name = dragItem.name
   dispatch(setDragged(name))
 
+  // The delay is needed to work around a quirk in Chrome
+  // regarding HTML5 drag and drop.
   setTimeout(() => { dispatch(buildRoomTargets()) }, 10)
 }
 
