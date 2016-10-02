@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import FileInput from 'react-file-input'
 
 import * as Actions from '../actions'
 
