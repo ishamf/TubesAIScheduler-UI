@@ -34,7 +34,11 @@ class BaseSchedule extends React.Component {
               duration={s.get('duration')}
               key={s.get('name')}
             >
-              <Course name={s.get('name')} room={s.get('room')} />
+              <Course
+                name={s.get('name')}
+                room={s.get('room')}
+                hue={s.get('hue')}
+              />
             </ScheduleItem>
           )).toJS()}
         {scheduleDropTargets(dropTargets)}

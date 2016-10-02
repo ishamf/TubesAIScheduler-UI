@@ -36,18 +36,26 @@ function dndCollect (connect, monitor) {
   }
 }
 
-const Course = ({name, room, connectDragSource, isDragging}) => (
+const Course = ({name, room, hue, connectDragSource, isDragging, anyDragging}) => (
   connectDragSource(
-    <div className={classNames({
-      'course': true,
-      'mod-dragged': isDragging
-    })}>
+    <div
+      className={classNames({
+        'course': true,
+        'mod-any-dragged': anyDragging && !isDragging,
+        'mod-dragged': isDragging
+      })}
+      style={{
+        backgroundColor: `hsla(${hue}, 100%, 50%, 0.5)`
+      }}
+    >
       {name} at {room}
     </div>
   )
 )
 
 const DNDSpec = DragSource(DRAG_TYPE_SCHEDULE_ITEM, sItemSource, dndCollect)
-const Connector = connect(undefined, Actions)
+const Connector = connect(state => ({
+  anyDragging: state.getIn(['drag', 'isDragging'])
+}), Actions)
 
 export default flow(DNDSpec, Connector)(Course)

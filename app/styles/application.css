@@ -18,27 +18,22 @@
   height: 100%;
 }
 
-.course {
-  background-color: gray;
-  z-index: 120;
-}
-
-.course.mod-dragged {
+.course.mod-any-dragged {
+  background-color: hsla(0, 0%, 50%, 0.5) !important;
   opacity: 0.5;
   z-index: 30;
 }
 
 .course-drop-target {
-  z-index: 60;
-  background-color: rgba(167, 226, 204, 0.56);
+  background-color: hsla(62, 94%, 70%, 0.8);
 }
 
 .course-drop-target.mod-active {
-  background-color: rgba(195, 251, 152, 0.54);
+  background-color: hsla(124, 93%, 70%, 0.8);
 }
 
 .course-drop-target.mod-active.mod-error {
-  background-color: rgba(255, 43, 43, 0.54);
+  background-color: hsla(9, 93%, 70%, 0.8);
 }
 
 .course-drop-ghost {

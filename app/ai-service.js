@@ -3,6 +3,7 @@ import AI from './emscripten/AI'
 let viewAdapter = new AI.ViewAdapter()
 
 const initialAuxData = () => ({
+  hues: {},
   rooms: []
 })
 let auxData = initialAuxData()
@@ -17,6 +18,8 @@ export async function loadString (s) {
   await reset()
   let lines = s.split('\n').map(x => x.trim()).filter(x => x.length > 0)
 
+  let courseNames = []
+
   let state = null
   lines.forEach(line => {
     if (line === 'Ruangan' || line === 'Jadwal') {
@@ -30,8 +33,14 @@ export async function loadString (s) {
           break
         case 'Jadwal':
           viewAdapter.add_course(line)
+          courseNames.push(line.split(';')[0])
       }
     }
+  })
+
+  const hueStep = 360.0 / courseNames.length
+  courseNames.forEach((name, i) => {
+    auxData.hues[name] = i * hueStep
   })
 
   viewAdapter.randomize_schedule()
@@ -87,6 +96,7 @@ export async function getLatestState () {
           slot: time
         },
         duration: duration,
+        hue: auxData.hues[course_name],
         room: room_name
       }))
     .forEach(s => {
