@@ -41,6 +41,14 @@ export function loadString (s) {
   }
 }
 
+export const loadFile = (f) => async (dispatch) => {
+  const fr = new FileReader()
+  fr.onload = () => {
+    dispatch(loadString(fr.result))
+  }
+  fr.readAsText(f)
+}
+
 export const runSimulatedAnnealing = () => async (dispatch) => {
   await AI.simulatedAnnealing()
   dispatch(updateState())
