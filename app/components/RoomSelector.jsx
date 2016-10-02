@@ -6,17 +6,22 @@ import {flow} from '../util'
 import * as Actions from '../actions'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
-const RoomSelector = ({room, changeRoom}) => (
+const RoomSelector = ({room, changeRoom, connectDropTarget}) => connectDropTarget(
   <a className='room-selector' href='#' onClick={() => { changeRoom(room) }}>{room}</a>
 )
 
 const scheduleDropTarget = {
-  hover ({room, changeRoom}) {
+  hover (props) {
+    const {room, changeRoom} = props
     changeRoom(room)
   }
 }
 
-function dndCollect () { return {} }
+function dndCollect (connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget()
+  }
+}
 
 const Connector = connect(state => {
   return {}
@@ -25,6 +30,6 @@ const Connector = connect(state => {
 const DNDTarget = DropTarget(DRAG_TYPE_SCHEDULE_ITEM, scheduleDropTarget, dndCollect)
 
 export default flow(
-  Connector,
-  DNDTarget
+  DNDTarget,
+  Connector
 )(RoomSelector)
