@@ -1,23 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {DropTarget} from 'react-dnd'
 
-import {DAY_PERCENT, SLOT_PERCENT, DRAG_TYPE_SCHEDULE_ITEM, SLOT_POSITIONS} from '../values'
+import {DAY_PERCENT, SLOT_PERCENT, SLOT_POSITIONS} from '../values'
 
 import {flow} from '../util'
 import ScheduleItem from './ScheduleItem'
 import ScheduleDropTarget from './ScheduleDropTarget'
 import Course from './Course'
-
-const scheduleDropTarget = {
-
-}
-
-function dndCollect (connect, monitor) {
-  return {
-    currentlyDragged: monitor.getItem()
-  }
-}
 
 class BaseSchedule extends React.Component {
   render () {
@@ -88,9 +77,6 @@ const ScheduleConnector = connect(state => {
   }
 })
 
-const ScheduleDND = DropTarget(DRAG_TYPE_SCHEDULE_ITEM, scheduleDropTarget, dndCollect)
-
 export default flow(
-  ScheduleConnector,
-  ScheduleDND
+  ScheduleConnector
 )(BaseSchedule)
