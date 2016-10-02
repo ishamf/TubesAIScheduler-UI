@@ -9,7 +9,7 @@ import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
 const RoomSelector = ({room, currentRoom, changeRoom, connectDropTarget}) => connectDropTarget(
   <li className={classNames({'active': room === currentRoom})}>
-    <a href='#' onClick={() => { changeRoom(room) }}>{room}</a>
+    <a href='#' onClick={() => { changeRoom(room); return false }}>{room}</a>
   </li>
 )
 
