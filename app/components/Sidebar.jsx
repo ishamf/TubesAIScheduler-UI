@@ -9,11 +9,11 @@ const Sidebar = ({
   runGeneticAlgorithm,
   runHillClimbing
 }) => (
-  <ul className='nav nav-pills nav-stacked'>
-    <li><a href='#' onClick={erf(runSimulatedAnnealing)}>Simulated Annealing</a></li>
-    <li><a href='#' onClick={erf(runGeneticAlgorithm)}>Genetic Algorithm</a></li>
-    <li><a href='#' onClick={erf(runHillClimbing)}>Hill Climbing</a></li>
-  </ul>
+  <div>
+    <a href='#' className='btn btn-default btn-block' onClick={erf(runSimulatedAnnealing)}>Simulated Annealing</a>
+    <a href='#' className='btn btn-default btn-block' onClick={erf(runGeneticAlgorithm)}>Genetic Algorithm</a>
+    <a href='#' className='btn btn-default btn-block' onClick={erf(runHillClimbing)}>Hill Climbing</a>
+  </div>
 )
 
 export default connect(undefined, Actions)(Sidebar)
