@@ -37,6 +37,18 @@ export async function loadString (s) {
   viewAdapter.randomize_schedule()
 }
 
+export async function simulatedAnnealing () {
+  viewAdapter.run_simulated_annealing()
+}
+
+export async function geneticAlgorithm () {
+  viewAdapter.run_genetic_algorithm()
+}
+
+export async function hillClimbing () {
+  viewAdapter.run_hill_climbing()
+}
+
 export async function moveCourse (courseName, day, slot, roomName) {
   console.log(`Moving ${courseName} to ${day}, ${slot}, ${roomName}...`)
   const result = viewAdapter.move_course(courseName, roomName, day, slot)

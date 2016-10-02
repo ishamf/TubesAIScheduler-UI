@@ -10,7 +10,13 @@ import * as Actions from '../actions'
 
 class BaseApp extends React.Component {
   render () {
-    const {loadString, rooms} = this.props
+    const {
+      loadString,
+      rooms,
+      runSimulatedAnnealing,
+      runGeneticAlgorithm,
+      runHillClimbing
+    } = this.props
 
     return (
       <div id='content'>
@@ -33,6 +39,9 @@ class BaseApp extends React.Component {
           IF3111;-;07.00;12.00;2;1,2,3,4,5
 
           `)}>Load TC Asisten</a>
+        <a href='#' onClick={() => runSimulatedAnnealing()}>Simulated Annealing</a>
+        <a href='#' onClick={() => runGeneticAlgorithm()}>Genetic Algorithm</a>
+        <a href='#' onClick={() => runHillClimbing()}>Hill Climbing</a>
         {rooms.map(room => (
           <RoomSelector room={room} />
         ))}

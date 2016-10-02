@@ -17,6 +17,14 @@ const moveCourseInUI = createAction('MOVE_COURSE',
 const replaceSchedule = createAction('REPLACE_SCHEDULE')
 const replaceRooms = createAction('REPLACE_ROOMS')
 
+const updateState = () => async (dispatch) => {
+  const newSchedule = await AI.getLatestState()
+  const newRooms = await AI.getRooms()
+
+  dispatch(replaceRooms(newRooms))
+  dispatch(replaceSchedule(newSchedule))
+}
+
 export function moveCourse (name, day, slot, room) {
   return async (dispatch) => {
     if (await AI.moveCourse(name, day, slot, room)) {
@@ -28,12 +36,24 @@ export function moveCourse (name, day, slot, room) {
 export function loadString (s) {
   return async (dispatch) => {
     await AI.loadString(s)
-    const newSchedule = await AI.getLatestState()
-    const newRooms = await AI.getRooms()
 
-    dispatch(replaceRooms(newRooms))
-    dispatch(replaceSchedule(newSchedule))
+    dispatch(updateState())
   }
+}
+
+export const runSimulatedAnnealing = () => async (dispatch) => {
+  await AI.simulatedAnnealing()
+  dispatch(updateState())
+}
+
+export const runGeneticAlgorithm = () => async (dispatch) => {
+  await AI.geneticAlgorithm()
+  dispatch(updateState())
+}
+
+export const runHillClimbing = () => async (dispatch) => {
+  await AI.hillClimbing()
+  dispatch(updateState())
 }
 
 const addDropTarget = createAction('ADD_DROP_TARGET') // {day, slot, room}
