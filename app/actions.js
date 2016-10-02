@@ -23,14 +23,24 @@ const updateState = () => async (dispatch) => {
   const newSchedule = await AI.getLatestState()
   const newRooms = await AI.getRooms()
 
+  dispatch(updateScores())
   dispatch(replaceRooms(newRooms))
   dispatch(replaceSchedule(newSchedule))
+}
+
+const setRoomPercentage = createAction('SET_ROOM_PERCENTAGE')
+const setConflictCount = createAction('SET_CONFLICT_COUNT')
+
+const updateScores = () => async (dispatch) => {
+  dispatch(setRoomPercentage(await AI.getRoomPercentage()))
+  dispatch(setConflictCount(await AI.getConflicts()))
 }
 
 export function moveCourse (name, day, slot, room) {
   return async (dispatch) => {
     if (await AI.moveCourse(name, day, slot, room)) {
       dispatch(moveCourseInUI(name, day, slot, room))
+      dispatch(updateScores())
     }
   }
 }

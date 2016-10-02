@@ -10,6 +10,8 @@ const defaultState = fromJS({
     name: null
   },
   currentRoom: '7602',
+  roomPercentage: 0,
+  conflictCount: 0,
   rooms: [],
   schedule: {}
 })
@@ -25,6 +27,12 @@ export default (state = defaultState, {type, payload}) => {
       return state.set('rooms', fromJS(payload))
     case 'REPLACE_SCHEDULE':
       return state.set('schedule', fromJS(payload))
+
+    case 'SET_ROOM_PERCENTAGE':
+      return state.set('roomPercentage', payload)
+    case 'SET_CONFLICT_COUNT':
+      return state.set('conflictCount', payload)
+
     case 'ADD_DROP_TARGET':
       return state.updateIn(['drag', 'targets'], set => set.add(fromJS(payload)))
     case 'ADD_DROP_TARGET_PADDING':

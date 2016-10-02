@@ -58,6 +58,14 @@ export async function hillClimbing () {
   viewAdapter.run_hill_climbing()
 }
 
+export async function getRoomPercentage () {
+  return viewAdapter.get_room_percentage()
+}
+
+export async function getConflicts () {
+  return viewAdapter.get_conflicts()
+}
+
 export async function moveCourse (courseName, day, slot, roomName) {
   console.log(`Moving ${courseName} to ${day}, ${slot}, ${roomName}...`)
   const result = viewAdapter.move_course(courseName, roomName, day, slot)
