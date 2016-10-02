@@ -16,7 +16,7 @@ const Navbar = ({rooms}) => (
       </form>
       <ul className='nav navbar-nav navbar-right'>
         {rooms.map(room => (
-          <li><RoomSelector room={room} /></li>
+          <RoomSelector room={room} />
         ))}
       </ul>
     </div>

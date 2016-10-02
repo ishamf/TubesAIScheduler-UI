@@ -1,13 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {DropTarget} from 'react-dnd'
+import classNames from 'classnames'
 
 import {flow} from '../util'
 import * as Actions from '../actions'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
-const RoomSelector = ({room, changeRoom, connectDropTarget}) => connectDropTarget(
-  <a href='#' onClick={() => { changeRoom(room) }}>{room}</a>
+const RoomSelector = ({room, currentRoom, changeRoom, connectDropTarget}) => connectDropTarget(
+  <li className={classNames({'active': room === currentRoom})}>
+    <a href='#' onClick={() => { changeRoom(room) }}>{room}</a>
+  </li>
 )
 
 const scheduleDropTarget = {
