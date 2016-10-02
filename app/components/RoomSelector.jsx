@@ -7,9 +7,12 @@ import {flow} from '../util'
 import * as Actions from '../actions'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
-const RoomSelector = ({room, currentRoom, changeRoom, connectDropTarget}) => connectDropTarget(
+const RoomSelector = ({room, currentRoom, coursesInRoom, changeRoom, connectDropTarget}) => connectDropTarget(
   <li className={classNames({'active': room === currentRoom})}>
-    <a href='#' onClick={() => { changeRoom(room); return false }}>{room}</a>
+    <a href='#' onClick={() => { changeRoom(room); return false }}>
+      {room + ' '}
+      <span className='badge'>{coursesInRoom}</span>
+    </a>
   </li>
 )
 
@@ -27,9 +30,13 @@ function dndCollect (connect, monitor) {
   }
 }
 
-const Connector = connect(state => {
+const Connector = connect((state, {room}) => {
   return {
-    currentRoom: state.get('currentRoom')
+    currentRoom: state.get('currentRoom'),
+    coursesInRoom: state.get('schedule')
+      .valueSeq()
+      .filter(c => c.get('room') === room)
+      .count()
   }
 }, Actions)
 
