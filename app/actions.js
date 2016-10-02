@@ -1,3 +1,5 @@
+/* eslint-env browser */
+
 import { createAction } from 'redux-actions'
 import * as AI from './ai-service'
 
