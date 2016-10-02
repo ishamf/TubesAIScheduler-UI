@@ -51,8 +51,19 @@ class BaseApp extends React.Component {
   }
 }
 
+const DNDContext =
+  module.hot &&
+  module.hot.data &&
+  module.hot.data.dndContext || DragDropContext(HTML5Backend)
+
+if (module.hot) {
+  module.hot.dispose((data) => {
+    data.dndContext = DNDContext
+  })
+}
+
 export default flow(
-  DragDropContext(HTML5Backend),
+  DNDContext,
   connect((state) => ({
     rooms: state.get('rooms')
   }), Actions)
