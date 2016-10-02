@@ -30,6 +30,11 @@
 
 .course-drop-target {
   z-index: 60;
+  background-color: rgba(167, 226, 204, 0.56);
+}
+
+.course-drop-target.mod-active {
+  background-color: rgba(195, 251, 152, 0.54);
 }
 
 .course-drop-ghost {

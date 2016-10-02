@@ -14,6 +14,7 @@ export async function reset () {
 }
 
 export async function loadString (s) {
+  await reset()
   let lines = s.split('\n').map(x => x.trim()).filter(x => x.length > 0)
 
   let state = null
@@ -81,4 +82,9 @@ export async function getLatestState () {
     })
 
   return result
+}
+
+export async function canMoveCourse (courseName, day, slot, roomName) {
+  // cC = courseConstraints
+  return viewAdapter.can_move_course(courseName, roomName, day, slot)
 }

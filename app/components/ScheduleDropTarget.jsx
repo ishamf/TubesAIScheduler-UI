@@ -1,13 +1,15 @@
 import React from 'react'
 import {DropTarget} from 'react-dnd'
+import classNames from 'classnames'
 
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
 const scheduleDropTarget = {
-  drop ({day, slot}) {
+  drop ({day, slot, room}) {
     return {
       day,
-      slot
+      slot,
+      room
     }
   }
 }
@@ -19,9 +21,12 @@ function dndCollect (connect, monitor) {
   }
 }
 
-const ScheduleDropTarget = ({connectDropTarget, isOver}) => (
+const ScheduleDropTarget = ({connectDropTarget, isOver, day, slot}) => (
   connectDropTarget(
-    <div className='course-drop-target' style={{backgroundColor: isOver ? 'white' : 'transparent'}} />
+    <div className={classNames({
+      'course-drop-target': true,
+      'mod-active': isOver
+    })} />
   )
 )
 

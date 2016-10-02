@@ -1,19 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {DropTarget} from 'react-dnd'
 
-import {DAY_PERCENT, SLOT_PERCENT, DAYS, SLOTS, SLOT_OFFSET, DAY_OFFSET} from '../values'
+import {DAY_PERCENT, SLOT_PERCENT, DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
+import {flow} from '../util'
 import ScheduleItem from './ScheduleItem'
 import ScheduleDropTarget from './ScheduleDropTarget'
 import Course from './Course'
 
+const scheduleDropTarget = {
+
+}
+
+function dndCollect (connect, monitor) {
+  return {
+    currentlyDragged: monitor.getItem()
+  }
+}
+
 class BaseSchedule extends React.Component {
   render () {
-    const {schedule} = this.props
+    const {schedule, dropTargets} = this.props
 
     return (
       <div className='schedule' style={gridScheduleStyle}>
-        {scheduleDropTargets()}
         {schedule.valueSeq().map((s) => (
           <ScheduleItem
             day={s.getIn(['time', 'day'])}
@@ -24,28 +35,25 @@ class BaseSchedule extends React.Component {
             <Course name={s.get('name')} room={s.get('room')} />
           </ScheduleItem>
         )).toJS()}
+        {scheduleDropTargets(dropTargets)}
       </div>
     )
   }
 }
 
-function scheduleDropTargets () {
-  let acc = []
-  for (let day = DAY_OFFSET; day < DAYS + DAY_OFFSET; day++) {
-    for (let slot = SLOT_OFFSET; slot < SLOTS + SLOT_OFFSET; slot++) {
-      acc.push(
-        <ScheduleItem
-          day={day}
-          slot={slot}
-          duration={1}
-          key={`(${day}, ${slot})`}
-        >
-          <ScheduleDropTarget day={day} slot={slot} />
-        </ScheduleItem>
-      )
-    }
-  }
-  return acc
+function scheduleDropTargets (dropTargets) {
+  return dropTargets.map(dtMap => {
+    const {day, slot, room} = dtMap.toJS()
+    return (
+      <ScheduleItem
+        day={day}
+        slot={slot}
+        duration={1}
+        key={`(${day}, ${slot})`}
+      >
+        <ScheduleDropTarget day={day} slot={slot} room={room} />
+      </ScheduleItem>)
+  })
 }
 
 const gridScheduleStyle = {
@@ -66,8 +74,14 @@ const gridScheduleStyle = {
 
 const ScheduleConnector = connect(state => {
   return {
-    schedule: state.get('schedule')
+    schedule: state.get('schedule'),
+    dropTargets: state.getIn(['drag', 'targets'])
   }
 })
 
-export default ScheduleConnector(BaseSchedule)
+const ScheduleDND = DropTarget(DRAG_TYPE_SCHEDULE_ITEM, scheduleDropTarget, dndCollect)
+
+export default flow(
+  ScheduleConnector,
+  ScheduleDND
+)(BaseSchedule)

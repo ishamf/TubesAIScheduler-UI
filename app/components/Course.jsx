@@ -8,14 +8,21 @@ import * as Actions from '../actions'
 import {DRAG_TYPE_SCHEDULE_ITEM} from '../values'
 
 const sItemSource = {
-  beginDrag ({name}) {
-    return {
+  beginDrag ({name, beginDrag}) {
+    console.log('Start!')
+
+    const dragItem = {
       name: name
     }
+
+    beginDrag(dragItem)
+    return dragItem
   },
-  endDrag ({name, moveCourse, room}, monitor) {
+  endDrag ({name, moveCourse, endDrag}, monitor) {
+    console.log('End!')
+    endDrag()
     if (monitor.didDrop()) {
-      const {day, slot} = monitor.getDropResult()
+      const {day, slot, room} = monitor.getDropResult()
 
       moveCourse(name, day, slot, room)
     }
