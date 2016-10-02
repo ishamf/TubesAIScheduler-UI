@@ -14,7 +14,7 @@ class BaseApp extends React.Component {
     return (
       <div id='content'>
         <h1>Tubes 1 AI: Scheduling</h1>
-        <a onClick={()=>loadString(`
+        <a onClick={() => loadString(`
           Ruangan
           7602;07.00;14.00;1,2,3,4,5
           7603;07.00;14.00;1,3,5
