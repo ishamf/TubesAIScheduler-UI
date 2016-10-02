@@ -11,8 +11,17 @@ const scheduleDropTarget = {
   canDrop ({canDrop}) {
     return canDrop
   },
-  hover ({hoveredOver, day, slot, room, canDrop}) {
-    hoveredOver({position: {day, slot, room}, canDrop})
+  hover ({hoveredOver, day, slot, room, canDrop, hovered}) {
+    // hover is called on mouse movement, don't dispatch unless we have to
+    if (
+      !hovered ||
+      hovered.get('day') !== day ||
+      hovered.get('slot') !== slot ||
+      hovered.get('room') !== room
+
+    ) {
+      hoveredOver({position: {day, slot, room}, canDrop})
+    }
   },
   drop ({day, slot, room}) {
     return {
@@ -29,7 +38,7 @@ function dndCollect (connect, monitor) {
   }
 }
 
-const ScheduleDropTarget = ({connectDropTarget, day, slot, room, isDrop, hovered, draggedDuration, dragValid}) => {
+const ScheduleDropTarget = ({connectDropTarget, day, slot, room, isDrop, hovered, draggedDuration, dragValid, present}) => {
   const isOver = hovered && isPartOf(hovered.toJS(), day, slot, room, draggedDuration)
 
   return connectDropTarget(

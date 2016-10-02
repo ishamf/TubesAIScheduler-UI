@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {DropTarget} from 'react-dnd'
 
-import {DAY_PERCENT, SLOT_PERCENT, DRAG_TYPE_SCHEDULE_ITEM} from '../values'
+import {DAY_PERCENT, SLOT_PERCENT, DRAG_TYPE_SCHEDULE_ITEM, SLOT_POSITIONS} from '../values'
 
 import {flow} from '../util'
 import ScheduleItem from './ScheduleItem'
@@ -41,24 +41,24 @@ class BaseSchedule extends React.Component {
               />
             </ScheduleItem>
           )).toJS()}
-        {scheduleDropTargets(dropTargets)}
-        {scheduleDropTargets(dropTargetPadding, true)}
+        {scheduleDropTargets(dropTargets, dropTargetPadding, currentRoom)}
       </div>
     )
   }
 }
 
-function scheduleDropTargets (dropTargets, padding) {
-  return dropTargets.map(dtMap => {
-    const {day, slot, room} = dtMap.toJS()
+function scheduleDropTargets (dropTargets, padding, currentRoom) {
+  return SLOT_POSITIONS.map(dtMap => {
+    const {day, slot} = dtMap.toJS()
     return (
       <ScheduleItem
+        hidden={!dropTargets.has(dtMap) && !padding.has(dtMap)}
         day={day}
         slot={slot}
         duration={1}
         key={`(${day}, ${slot})`}
       >
-        <ScheduleDropTarget day={day} slot={slot} room={room} canDrop={!padding} />
+        <ScheduleDropTarget day={day} slot={slot} room={currentRoom} canDrop={!padding.has(dtMap)} />
       </ScheduleItem>)
   })
 }

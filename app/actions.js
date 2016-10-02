@@ -66,8 +66,8 @@ export const runHillClimbing = () => async (dispatch) => {
   dispatch(updateState())
 }
 
-const addDropTarget = createAction('ADD_DROP_TARGET') // {day, slot, room}
-const addDropTargetPadding = createAction('ADD_DROP_TARGET_PADDING') // {day, slot, room}
+const addDropTarget = createAction('ADD_DROP_TARGET') // {day, slot}
+const addDropTargetPadding = createAction('ADD_DROP_TARGET_PADDING') // {day, slot}
 const clearDropTargets = createAction('CLEAR_DROP_TARGETS')
 const changeRoomUI = createAction('CHANGE_ROOM') // (room)
 const setDragged = createAction('SET_DRAGGED') // (name)
@@ -85,13 +85,13 @@ const buildRoomTargets = () => async (dispatch, getState) => {
     let latestSlot = -1
     for (let slot = SLOT_OFFSET; slot < SLOTS + SLOT_OFFSET; slot++) {
       if (await AI.canMoveCourse(name, day, slot, room)) {
-        dispatch(addDropTarget({day, slot, room}))
+        dispatch(addDropTarget({day, slot}))
         latestSlot = slot
       }
     }
     if (latestSlot >= 0) {
       for (let slot = latestSlot + 1; slot < SLOTS + SLOT_OFFSET && slot < latestSlot + duration; slot++) {
-        dispatch(addDropTargetPadding({day, slot, room}))
+        dispatch(addDropTargetPadding({day, slot}))
       }
     }
   }
