@@ -25,15 +25,15 @@
 }
 
 .course-drop-target {
-  background-color: hsla(62, 94%, 70%, 0.8);
+  background-color: hsla(62, 94%, 70%, 0.4);
 }
 
 .course-drop-target.mod-active {
-  background-color: hsla(124, 93%, 70%, 0.8);
+  background-color: hsla(124, 93%, 70%, 0.4);
 }
 
 .course-drop-target.mod-active.mod-error {
-  background-color: hsla(9, 93%, 70%, 0.8);
+  background-color: hsla(9, 93%, 70%, 0.4);
 }
 
 .course-drop-ghost {

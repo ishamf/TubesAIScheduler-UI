@@ -41,7 +41,7 @@ const Course = ({name, room, hue, connectDragSource, isDragging, anyDragging}) =
     <div
       className={classNames({
         'course': true,
-        'mod-any-dragged': anyDragging && !isDragging,
+        'mod-any-dragged': anyDragging,
         'mod-dragged': isDragging
       })}
       style={{
