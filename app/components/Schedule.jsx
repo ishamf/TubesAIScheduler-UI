@@ -55,16 +55,16 @@ function scheduleDropTargets (dropTargets, padding, currentRoom) {
 const gridScheduleStyle = {
   background: `repeating-linear-gradient(
     0deg,
-    hsla(0, 0%, 63%, 0.2),
-    hsla(0, 0%, 60%, 0.2) ${SLOT_PERCENT}%,
-    hsla(0, 0%, 40%, 0.2) ${SLOT_PERCENT}%,
-    hsla(0, 0%, 40%, 0.2) ${SLOT_PERCENT * 2}%
+    hsla(200, 80%, 80%, 0.1),
+    hsla(200, 80%, 80%, 0.1) ${SLOT_PERCENT}%,
+    hsla(200, 80%, 60%, 0.1) ${SLOT_PERCENT}%,
+    hsla(200, 80%, 60%, 0.1) ${SLOT_PERCENT * 2}%
   ), repeating-linear-gradient(
     90deg,
-    hsla(0, 0%, 63%, 0.2),
-    hsla(0, 0%, 60%, 0.2) ${DAY_PERCENT}%,
-    hsla(0, 0%, 40%, 0.2) ${DAY_PERCENT}%,
-    hsla(0, 0%, 40%, 0.2) ${DAY_PERCENT * 2}%
+    hsla(200, 80%, 80%, 0.1),
+    hsla(200, 80%, 80%, 0.1) ${DAY_PERCENT}%,
+    hsla(200, 80%, 60%, 0.1) ${DAY_PERCENT}%,
+    hsla(200, 80%, 60%, 0.1) ${DAY_PERCENT * 2}%
   )`
 }
 

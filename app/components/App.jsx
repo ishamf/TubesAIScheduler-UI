@@ -2,6 +2,7 @@ import React from 'react'
 import Schedule from './Schedule'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
+import RoomTabBar from './RoomTabBar'
 import {DragDropContext} from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
@@ -18,7 +19,12 @@ class BaseApp extends React.Component {
               <Sidebar />
             </div>
             <div className='col-md-9'>
-              <Schedule />
+              <RoomTabBar />
+              <div className='panel panel-default'>
+                <div className='panel-body'>
+                  <Schedule />
+                </div>
+              </div>
             </div>
           </div>
         </div>
