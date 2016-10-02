@@ -48,7 +48,7 @@ const Course = ({name, room, hue, connectDragSource, isDragging, anyDragging}) =
         backgroundColor: `hsla(${hue}, 100%, 70%, 0.4)`
       }}
     >
-      {name} at {room}
+      {name}
     </div>
   )
 )

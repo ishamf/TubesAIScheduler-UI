@@ -1,8 +1,3 @@
-* {
-  box-sizing: border-box;
-  font-family: -apple-system, system, sans-serif;
-}
-
 .schedule {
   position: relative;
   width: 100%;
@@ -11,6 +6,15 @@
 
 .schedule-item {
   position: absolute;
+}
+
+.course {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .course, .course-drop-target, .course-drop-ghost {
