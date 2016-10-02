@@ -37,6 +37,10 @@
   background-color: rgba(195, 251, 152, 0.54);
 }
 
+.course-drop-target.mod-active.mod-error {
+  background-color: rgba(255, 43, 43, 0.54);
+}
+
 .course-drop-ghost {
   background-color: white;
 }

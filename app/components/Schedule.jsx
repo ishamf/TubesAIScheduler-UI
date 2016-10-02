@@ -21,7 +21,7 @@ function dndCollect (connect, monitor) {
 
 class BaseSchedule extends React.Component {
   render () {
-    const {schedule, dropTargets, currentRoom} = this.props
+    const {schedule, dropTargets, currentRoom, dropTargetPadding} = this.props
 
     return (
       <div className='schedule' style={gridScheduleStyle}>
@@ -38,12 +38,13 @@ class BaseSchedule extends React.Component {
             </ScheduleItem>
           )).toJS()}
         {scheduleDropTargets(dropTargets)}
+        {scheduleDropTargets(dropTargetPadding, true)}
       </div>
     )
   }
 }
 
-function scheduleDropTargets (dropTargets) {
+function scheduleDropTargets (dropTargets, padding) {
   return dropTargets.map(dtMap => {
     const {day, slot, room} = dtMap.toJS()
     return (
@@ -53,7 +54,7 @@ function scheduleDropTargets (dropTargets) {
         duration={1}
         key={`(${day}, ${slot})`}
       >
-        <ScheduleDropTarget day={day} slot={slot} room={room} />
+        <ScheduleDropTarget day={day} slot={slot} room={room} canDrop={!padding} />
       </ScheduleItem>)
   })
 }
@@ -78,7 +79,8 @@ const ScheduleConnector = connect(state => {
   return {
     schedule: state.get('schedule'),
     currentRoom: state.get('currentRoom'),
-    dropTargets: state.getIn(['drag', 'targets'])
+    dropTargets: state.getIn(['drag', 'targets']),
+    dropTargetPadding: state.getIn(['drag', 'padding'])
   }
 })
 
