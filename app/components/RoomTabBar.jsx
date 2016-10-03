@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 const RoomTabBar = ({rooms}) => (
   <ul className='nav nav-tabs nav-justified'>
     {rooms.map(room => (
-      <RoomSelector room={room} />
+      <RoomSelector room={room} key={room}/>
     ))}
   </ul>
 )

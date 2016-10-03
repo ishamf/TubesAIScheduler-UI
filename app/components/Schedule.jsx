@@ -53,7 +53,7 @@ function scheduleHours () {
   for (let slot = SLOT_OFFSET; slot < SLOTS + SLOT_OFFSET; slot++) {
     acc.push(<div className='schedule-hour' style={{
       height: `${SLOT_PERCENT}%`
-    }}>{('0' + slot).slice(-2)}.00</div>)
+    }} key={`hour-${slot}`}>{('0' + slot).slice(-2)}.00</div>)
   }
   return acc
 }
