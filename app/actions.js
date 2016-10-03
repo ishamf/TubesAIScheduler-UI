@@ -61,6 +61,11 @@ export const loadFile = (f) => async (dispatch) => {
   fr.readAsText(f)
 }
 
+export const randomizeSchedule = () => async (dispatch) => {
+  await AI.randomizeSchedule()
+  dispatch(updateState())
+}
+
 export const runSimulatedAnnealing = () => async (dispatch) => {
   await AI.simulatedAnnealing()
   dispatch(updateState())

@@ -46,6 +46,10 @@ export async function loadString (s) {
   viewAdapter.randomize_schedule()
 }
 
+export async function randomizeSchedule () {
+  viewAdapter.randomize_schedule()
+}
+
 export async function simulatedAnnealing () {
   viewAdapter.run_simulated_annealing(100, 0.003, 1000)
 }

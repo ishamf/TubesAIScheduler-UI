@@ -7,11 +7,13 @@ import {ensureReturnFalse as erf} from '../util'
 const Sidebar = ({
   conflictCount,
   roomPercentage,
+  randomizeSchedule,
   runSimulatedAnnealing,
   runGeneticAlgorithm,
   runHillClimbing
 }) => (
   <div>
+    <a href='#' className='btn btn-default btn-block' onClick={erf(randomizeSchedule)}>Randomize</a>
     <a href='#' className='btn btn-default btn-block' onClick={erf(runSimulatedAnnealing)}>Simulated Annealing</a>
     <a href='#' className='btn btn-default btn-block' onClick={erf(runGeneticAlgorithm)}>Genetic Algorithm</a>
     <a href='#' className='btn btn-default btn-block' onClick={erf(runHillClimbing)}>Hill Climbing</a>
