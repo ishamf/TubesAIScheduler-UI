@@ -1,7 +1,50 @@
-.schedule {
-  position: relative;
+.schedule-days {
+  display: inline-block;
+  padding-left: 5em;
+  height: 2em;
   width: 100%;
-  min-height: 500px;
+}
+
+.schedule-container {
+  height: 500px;
+}
+
+.schedule-day {
+  display: inline-block;
+  text-align: center;
+  width: 20%;
+  line-height: 2em;
+  background-color: hsla(200, 80%, 80%, 0.7);
+}
+
+.schedule-day:nth-child(2n) {
+  background-color: hsla(200, 80%, 80%, 0.9);
+}
+
+.schedule-hours {
+  display: inline-block;
+  width: 5em;
+  height: calc(100% - 2em);
+  vertical-align: top;
+}
+
+.schedule-hour {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(200, 80%, 80%, 0.7);
+}
+
+.schedule-hour:nth-child(2n) {
+  background-color: hsla(200, 80%, 80%, 0.9);
+}
+
+.schedule {
+  display: inline-block;
+  position: relative;
+  width: calc(100% - 5em);
+  height: calc(100% - 2em);
+  vertical-align: top;
 }
 
 .schedule-item {

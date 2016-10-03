@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import {DAY_PERCENT, SLOT_PERCENT, SLOT_POSITIONS} from '../values'
+import {DAY_PERCENT, SLOT_PERCENT, SLOT_POSITIONS, SLOTS, SLOT_OFFSET} from '../values'
 
 import {flow} from '../util'
 import ScheduleItem from './ScheduleItem'
@@ -13,27 +13,49 @@ class BaseSchedule extends React.Component {
     const {schedule, dropTargets, currentRoom, dropTargetPadding} = this.props
 
     return (
-      <div className='schedule' style={gridScheduleStyle}>
-        {schedule.valueSeq()
-          .filter(s => s.get('room') === currentRoom)
-          .map(s => (
-            <ScheduleItem
-              day={s.getIn(['time', 'day'])}
-              slot={s.getIn(['time', 'slot'])}
-              duration={s.get('duration')}
-              key={s.get('name')}
-            >
-              <Course
-                name={s.get('name')}
-                room={s.get('room')}
-                hue={s.get('hue')}
-              />
-            </ScheduleItem>
-          )).toJS()}
-        {scheduleDropTargets(dropTargets, dropTargetPadding, currentRoom)}
+      <div className='schedule-container'>
+        <div className='schedule-days'>
+          <div className='schedule-day'>Monday</div>
+          <div className='schedule-day'>Tuesday</div>
+          <div className='schedule-day'>Wednesday</div>
+          <div className='schedule-day'>Thursday</div>
+          <div className='schedule-day'>Friday</div>
+        </div>
+        <div className='schedule-hours'>
+          {scheduleHours()}
+        </div>
+        <div className='schedule' style={gridScheduleStyle}>
+          {schedule.valueSeq()
+            .filter(s => s.get('room') === currentRoom)
+            .map(s => (
+              <ScheduleItem
+                day={s.getIn(['time', 'day'])}
+                slot={s.getIn(['time', 'slot'])}
+                duration={s.get('duration')}
+                key={s.get('name')}
+              >
+                <Course
+                  name={s.get('name')}
+                  room={s.get('room')}
+                  hue={s.get('hue')}
+                />
+              </ScheduleItem>
+            )).toJS()}
+          {scheduleDropTargets(dropTargets, dropTargetPadding, currentRoom)}
+        </div>
       </div>
     )
   }
+}
+
+function scheduleHours () {
+  let acc = []
+  for (let slot = SLOT_OFFSET; slot < SLOTS + SLOT_OFFSET; slot++) {
+    acc.push(<div className='schedule-hour' style={{
+      height: `${SLOT_PERCENT}%`
+    }}>{('0' + slot).slice(-2)}.00</div>)
+  }
+  return acc
 }
 
 function scheduleDropTargets (dropTargets, padding, currentRoom) {
