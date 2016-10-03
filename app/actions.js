@@ -26,6 +26,7 @@ const updateState = () => async (dispatch) => {
   dispatch(updateScores())
   dispatch(replaceRooms(newRooms))
   dispatch(replaceSchedule(newSchedule))
+  dispatch(changeRoom(newRooms[0]))
 }
 
 const setRoomPercentage = createAction('SET_ROOM_PERCENTAGE')
