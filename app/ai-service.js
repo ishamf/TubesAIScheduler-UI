@@ -47,15 +47,15 @@ export async function loadString (s) {
 }
 
 export async function simulatedAnnealing () {
-  viewAdapter.run_simulated_annealing()
+  viewAdapter.run_simulated_annealing(100, 0.003, 1000)
 }
 
 export async function geneticAlgorithm () {
-  viewAdapter.run_genetic_algorithm()
+  viewAdapter.run_genetic_algorithm(50, 0.15, 0.1, 10, 1000)
 }
 
 export async function hillClimbing () {
-  viewAdapter.run_hill_climbing()
+  viewAdapter.run_hill_climbing(1000)
 }
 
 export async function getRoomPercentage () {
