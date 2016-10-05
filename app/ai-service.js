@@ -4,6 +4,7 @@ let viewAdapter = new AI.ViewAdapter()
 
 const initialAuxData = () => ({
   hues: {},
+  roomtoid: null,
   rooms: []
 })
 let auxData = initialAuxData()
@@ -37,11 +38,11 @@ export async function loadString (s) {
         case 'Ruangan':
           if (!roomtoid.has(origname)) {
             roomtoid.set(origname, [])
+            auxData.rooms.push(origname)
           }
           roomtoid.get(origname).push(newname)
           line = arr.join(';')
           viewAdapter.add_room(line)
-          auxData.rooms.push(line.split(';')[0])
 
           break
         case 'Jadwal':
@@ -63,6 +64,7 @@ export async function loadString (s) {
       console.log(line)
     }
   })
+  auxData.roomtoid = roomtoid
 
   const hueStep = 360.0 / courseNames.length
   courseNames.forEach((name, i) => {
@@ -70,6 +72,10 @@ export async function loadString (s) {
   })
 
   viewAdapter.randomize_schedule()
+}
+
+export function getRoomIds (roomname) {
+  return auxData.roomtoid.get(roomname)
 }
 
 export async function randomizeSchedule () {
@@ -98,7 +104,16 @@ export async function getConflicts () {
 
 export async function moveCourse (courseName, day, slot, roomName) {
   console.log(`Moving ${courseName} to ${day}, ${slot}, ${roomName}...`)
-  const result = viewAdapter.move_course(courseName, roomName, day, slot)
+  let rs = getRoomIds(roomName)
+  let actualroom
+
+  rs.forEach(r => {
+    if (viewAdapter.can_move_course(courseName, r, day, slot)) {
+      actualroom = r
+    }
+  })
+
+  const result = viewAdapter.move_course(courseName, actualroom, day, slot)
 
   if (result) {
     console.log('Success!')
@@ -146,5 +161,9 @@ export async function getLatestState () {
 
 export async function canMoveCourse (courseName, day, slot, roomName) {
   // cC = courseConstraints
-  return viewAdapter.can_move_course(courseName, roomName, day, slot)
+  let rs = getRoomIds(roomName)
+  for (var i = 0; i < rs.length; i++) {
+    if (viewAdapter.can_move_course(courseName, rs[i], day, slot)) return true
+  }
+  return false
 }

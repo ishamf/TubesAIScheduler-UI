@@ -35,7 +35,7 @@ const Connector = connect((state, {room}) => {
     currentRoom: state.get('currentRoom'),
     coursesInRoom: state.get('schedule')
       .valueSeq()
-      .filter(c => c.get('room') === room)
+      .filter(c => c.get('room').startsWith(room))
       .count()
   }
 }, Actions)

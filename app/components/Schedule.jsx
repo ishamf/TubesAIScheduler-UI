@@ -26,7 +26,7 @@ class BaseSchedule extends React.Component {
         </div>
         <div className='schedule' style={gridScheduleStyle}>
           {schedule.valueSeq()
-            .filter(s => s.get('room') === currentRoom)
+            .filter(s => s.get('room').startsWith(currentRoom))
             .map(s => (
               <ScheduleItem
                 day={s.getIn(['time', 'day'])}
