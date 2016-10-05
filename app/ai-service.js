@@ -20,21 +20,47 @@ export async function loadString (s) {
 
   let courseNames = []
 
+  let roomtoid = new Map()
+
   let state = null
-  lines.forEach(line => {
-    if (line === 'Ruangan' || line === 'Jadwal') {
-      state = line
+  lines.forEach((oline, i) => {
+    if (oline === 'Ruangan' || oline === 'Jadwal') {
+      state = oline
     } else {
+      let arr = oline.split(';')
+      let origname = arr[0]
+      let newname = origname + `-#^-${i}`
+      arr[0] = newname
+      let line
+
       switch (state) {
         case 'Ruangan':
+          if (!roomtoid.has(origname)) {
+            roomtoid.set(origname, [])
+          }
+          roomtoid.get(origname).push(newname)
+          line = arr.join(';')
           viewAdapter.add_room(line)
           auxData.rooms.push(line.split(';')[0])
 
           break
         case 'Jadwal':
+          let origroomref = arr[1]
+          let newroomref
+          if (origroomref === '-') {
+            newroomref = origroomref
+          } else {
+            newroomref = roomtoid.get(origroomref).join(',')
+          }
+
+          arr[1] = newroomref
+          line = arr.join(';')
+
           viewAdapter.add_course(line)
           courseNames.push(line.split(';')[0])
       }
+
+      console.log(line)
     }
   })
 
